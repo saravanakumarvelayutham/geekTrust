@@ -7,6 +7,7 @@ class Vehicle:
         self.TimePerCrater = int(timepercrater)
 
     def __str__(self):
+        return self.Name
         return 'Order: {} Vehicle: {} Speed: {} weathers: {} timePerCreater: {} \n'.format(self.Order, self.Name,
                                                                                            self.Speed, self.Weathers,
                                                                                            self.TimePerCrater)
