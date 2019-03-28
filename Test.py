@@ -7,7 +7,7 @@ class Test:
         orbit1 = 'Orbit1 traffic speed is 12 megamiles/hour'
         orbit2 = 'Orbit2 traffic speed is 10 megamiles/hour'
 
-        p = Popen(['python', 'Backend_Problem1_LengaburuTraffic.py'], stdout=PIPE, stdin=PIPE, stderr=STDOUT)
+        p = Popen(['python', 'Backend_Problem3_LengaburuTraffic.py'], stdout=PIPE, stdin=PIPE, stderr=STDOUT)
         input = '{}\n{}\n{}\n{}\n'.format('1',weather,orbit1,orbit2)
         input_byte = str.encode(input)
         p_stdout = p.communicate(input=input_byte)[0]
@@ -22,7 +22,7 @@ class Test:
         orbit1 = 'Orbit1 traffic speed is 14 megamiles/hour'
         orbit2 = 'Orbit2 traffic speed is 20 megamiles/hour'
 
-        p = Popen(['python', 'Backend_Problem1_LengaburuTraffic.py'], stdout=PIPE, stdin=PIPE, stderr=STDOUT)
+        p = Popen(['python', 'Backend_Problem3_LengaburuTraffic.py'], stdout=PIPE, stdin=PIPE, stderr=STDOUT)
         input = '{}\n{}\n{}\n{}\n'.format('1',weather,orbit1,orbit2)
         input_byte = str.encode(input)
         p_stdout = p.communicate(input=input_byte)[0]
@@ -39,7 +39,7 @@ class Test:
         orbit3 = 'Orbit3 traffic speed is 15 megamiles/hour'
         orbit4 = 'Orbit4 traffic speed is 12 megamiles/hour'
 
-        p = Popen(['python', 'Backend_Problem1_LengaburuTraffic.py'], stdout=PIPE, stdin=PIPE, stderr=STDOUT)
+        p = Popen(['python', 'Backend_Problem3_LengaburuTraffic.py'], stdout=PIPE, stdin=PIPE, stderr=STDOUT)
         input = '{}\n{}\n{}\n{}\n{}\n{}\n'.format('2',weather,orbit1,orbit2,orbit3,orbit4)
         input_byte = str.encode(input)
         p_stdout = p.communicate(input=input_byte)[0]
@@ -56,7 +56,7 @@ class Test:
         orbit3 = 'Orbit3 traffic speed is 20 megamiles/hour'
         orbit4 = 'Orbit4 traffic speed is 20 megamiles/hour'
 
-        p = Popen(['python', 'Backend_Problem1_LengaburuTraffic.py'], stdout=PIPE, stdin=PIPE, stderr=STDOUT)
+        p = Popen(['python', 'Backend_Problem3_LengaburuTraffic.py'], stdout=PIPE, stdin=PIPE, stderr=STDOUT)
         input = '{}\n{}\n{}\n{}\n{}\n{}\n'.format('2', weather, orbit1, orbit2, orbit3, orbit4)
         input_byte = str.encode(input)
         p_stdout = p.communicate(input=input_byte)[0]
