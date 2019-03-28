@@ -14,3 +14,4 @@ class Orbit:
                                                                                                           self.Destination,
                                                                                                           self.Distance,
                                                                                                           self.NumberOfCraters)
+

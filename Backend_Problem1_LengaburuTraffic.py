@@ -4,15 +4,13 @@ from Vehicle import Vehicle
 from Routes import Routes
 import GlobalVariables
 
-
-
 def getOrbitSample1(i):
     orbit = input()
     orbitinfo = orbit.split()
     orbitspeed = [int(speed) for speed in orbitinfo if speed.isnumeric()][0]
     name = orbitinfo[0]
-    source = 'SilkDub'
-    destination = 'Hallitharam'
+    source = GlobalVariables.Source
+    destination = GlobalVariables.Destination
     if i == 1:
         craters = 10
     else:
@@ -30,8 +28,8 @@ def getOrbitSample2(i):
     orbitinfo = orbit.split()
     orbitspeed = [int(speed) for speed in orbitinfo if speed.isnumeric()][0]
     name = orbitinfo[0]
-    source = 'SilkDub'
-    destination = 'Hallitharam'
+    source = GlobalVariables.Source
+    destination = GlobalVariables.Destination
     if i == 1:
         craters = 20
         distance = 18
@@ -148,7 +146,8 @@ def TestSample2():
 
 
 sample = input()
-GlobalVariables.init()
+GlobalVariables.initVehicles()
+GlobalVariables.initSourceAndDestination()
 if (sample == '1'):
     TestSample1()
 elif sample == '2':
