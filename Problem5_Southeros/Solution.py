@@ -27,7 +27,7 @@ class SoutherosSolution:
                 continue
             splitSentence = sentence.split()
             contestants = splitSentence[1:]
-        ballot = Ballot(contestants)
+        ballot = Ballot([kingdom for kingdom in GlobalVariables.kingdoms if kingdom.Name in contestants])
         ballot.Vote()
         ballot.CountVotes()
 
