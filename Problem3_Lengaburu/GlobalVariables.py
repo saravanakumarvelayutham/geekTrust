@@ -25,7 +25,7 @@ def initCratersAndDistanceForOrbits():
     distance_sample1 = [20,18]
     source_sample1 = [Source] * 2
     destination_sample1 = [Destination] * 2
-    orbitInformationSample1 = zip(craters_sample1,distance_sample1,source_sample1,destination_sample1)
+    orbitInformationSample1 = list(zip(craters_sample1,distance_sample1,source_sample1,destination_sample1))
     orbitInformationSample1 = pd.DataFrame(orbitInformationSample1,columns=columns)
 
     global orbitInformationSample2
@@ -33,5 +33,14 @@ def initCratersAndDistanceForOrbits():
     distance_sample2 = [18,20,30,15]
     source_sample2 = [Source,Source,Source,Intermediate]
     destination_sample2= [Destination,Destination,Intermediate,Destination]
-    orbitInformationSample2 = zip(craters_sample2,distance_sample2,source_sample2,destination_sample2)
+    orbitInformationSample2 = list(zip(craters_sample2,distance_sample2,source_sample2,destination_sample2))
     orbitInformationSample2 = pd.DataFrame(orbitInformationSample2,columns=columns)
+
+    global weatherInformation
+    weatherInformation = {
+        'Sunny' : 0.10,
+        'Rainy' : 0.20,
+        'Windy' : 0.0
+    }
+
+    global ProblemNumber
