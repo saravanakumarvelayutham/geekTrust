@@ -31,12 +31,12 @@ class Tests:
         southeros = SoutherosSolution()
         southeros.ExecuteProblem2(sampleIo)
 
-        #print('\nProbelm2_Sample2')
-        #print('Enter the kingdoms competing to be the ruler:')
-        #print(sampleIo)
-        #sampleIo = """Input: Fire Space"""
-        #southeros = SoutherosSolution()
-        #southeros.ExecuteProblem2(sampleIo)
+        print('\nProbelm2_Sample2')
+        print('Enter the kingdoms competing to be the ruler:')
+        print(sampleIo)
+        sampleIo = """Input: Fire Space"""
+        southeros = SoutherosSolution()
+        southeros.ExecuteProblem2(sampleIo)
 test = Tests()
-#test.RunProblem1()
+test.RunProblem1()
 test.RunProblem2()

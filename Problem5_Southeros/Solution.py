@@ -30,5 +30,6 @@ class SoutherosSolution:
         ballot = Ballot([kingdom for kingdom in GlobalVariables.kingdoms if kingdom.Name in contestants])
         ballot.Vote()
         ballot.CountVotes()
+        ballot.GetBallotResult()
 
 

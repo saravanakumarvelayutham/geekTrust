@@ -52,8 +52,11 @@ class Ballot:
                 ballot.Vote()
                 ballot.CountVotes()
                 break
-            print('Who is the ruler of Southeros?')
-            print(topKingdoms[0].Name)
-            print('Allies of Ruler?')
-            print(' '.join([ally.Name for ally in topKingdoms[0].Allies]))
             break
+        GlobalVariables.Winner = topKingdoms[0]
+
+    def GetBallotResult(self):
+        print('Who is the ruler of Southeros?')
+        print(GlobalVariables.Winner.Name)
+        print('Allies of Ruler?')
+        print(' '.join([ally.Name for ally in GlobalVariables.Winner.Allies]))

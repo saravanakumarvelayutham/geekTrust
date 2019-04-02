@@ -28,3 +28,5 @@ def initalizeConstants():
 
     global Round
     Round = 1
+
+    global Winner
