@@ -1,6 +1,7 @@
 import GlobalVariables
 from Message import Message
 from Conquest import Conquest
+from Ballot import Ballot
 
 class SoutherosSolution:
     def ExecuteProblem1(self,inputText):
@@ -18,3 +19,16 @@ class SoutherosSolution:
             del msg
         conquest.Conquer()
         conquest.GetResult()
+
+    def ExecuteProblem2(self,inputText):
+        GlobalVariables.initalizeConstants()
+        for sentence in inputText.split('\n'):
+            if 'Input:' not in sentence:
+                continue
+            splitSentence = sentence.split()
+            contestants = splitSentence[1:]
+        ballot = Ballot(contestants)
+        ballot.Vote()
+        ballot.CountVotes()
+
+

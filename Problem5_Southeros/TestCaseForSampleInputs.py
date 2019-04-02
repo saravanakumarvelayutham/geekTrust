@@ -28,6 +28,23 @@ class Tests:
         print('\nProblem1_Sample2')
         southeros.ExecuteProblem1(sampleIo)
 
+    def RunProblem2(self):
+        sampleIo = """Who is the ruler of Southeros?
+        Output: None
+        Allies of Ruler?
+        Output: None
+        Enter the kingdoms competing to be the ruler: 
+        Input: Land Air"""
+        #southeros = SoutherosSolution()
+        #southeros.ExecuteProblem2(sampleIo)
 
+        sampleIo = """Who is the ruler of Southeros? Output: None
+        Allies of Ruler?
+        Output: None
+        Enter the kingdoms competing to be the ruler: 
+        Input: Fire Space"""
+        southeros = SoutherosSolution()
+        southeros.ExecuteProblem2(sampleIo)
 test = Tests()
-test.RunProblem1()
+#test.RunProblem1()
+test.RunProblem2()
