@@ -1,26 +1,16 @@
-from collections import  Counter
-import GlobalVariables
-
-
 class Conquest:
-    Winner = None
-    Allies = None
-    def Send(self,msg):
-        msgCounter = Counter(msg.Message.lower())
-        for kingdom in GlobalVariables.kingdoms:
-            filteredCounter = dict((counterKey, kingdom.Counter[counterKey]) for counterKey, counterValue in msgCounter.items()
-                                   if counterKey in kingdom.Counter and counterValue >= kingdom.Counter[counterKey])
+    def __init__(self,conqueror):
+        self.Winner = None
+        self.Allies = None
+        self.Conqueror = conqueror
 
-            if filteredCounter == kingdom.Counter:
-                kingdom.Support += 1
-
-    def Conquer(self):
-        allies = [kingdom.Name for kingdom in GlobalVariables.kingdoms if kingdom.Support > 0]
-        if(len(allies) >= 3):
-            self.Winner = 'King Shan'
-            self.Allies = ', '.join(allies)
+    def SendMessage(self,msg):
+        msg.Send()
 
     def GetResult(self):
+        if self.Conqueror.Support >= 3 :
+            self.Winner = self.Conqueror
+            self.Allies = ', '.join([kingdom.Name for kingdom in self.Conqueror.Allies])
         print('Who is the ruler of Southeros?')
         print(self.Winner)
         print('Allies of Ruler?')

@@ -1,40 +1,61 @@
-from collections import  Counter
 import GlobalVariables
 import random
 import inflect
+from Message import Message
 
 
 class Ballot:
     Contestants = None
+    Voters = None
     Messages = None
     p = inflect.engine()
-    def __init__(self,contestants):
-        for contestant in contestants:
-            contestant.ClearAlliesAndSupport()
-        self.Contestants = contestants
 
-    def ChooseRandom(self):
+    def __init__(self,contestants):
+        self.Contestants = contestants
+        self.Voters = [kingdom for kingdom in GlobalVariables.kingdoms if kingdom not in contestants]
         self.Messages = list()
-        messageLen = len(GlobalVariables.messagesForSelection)
-        for index in [random.randint(0, messageLen - 1) for _ in range(6)]:
-            selectedMessage = GlobalVariables.messagesForSelection[index]
-            self.Messages.extend([selectedMessage])
+
+    def VotingProcess(self):
+        self.Vote()
+        self.CountVotes()
+
+    def UpdateContestants(self,contestants):
+        self.Contestants = contestants
+        self.ClearVotingResults()
+
+    def ClearVotingResults(self):
+        self.Messages.clear()
+        for contestant in self.Contestants:
+            contestant.ClearAlliesAndSupport()
+        for voter in self.Voters:
+            voter.ClearAlliesAndSupport()
+
+    def PrepareMessages(self,contestant):
+        for voter in self.Voters:
+            randomIndex = random.randint(0,len(GlobalVariables.messagesForSelection)-1)
+            selectedMessage = GlobalVariables.messagesForSelection[randomIndex]
+            message = Message(contestant,voter,selectedMessage)
+            self.Messages.extend([message])
+
+    def HighPriestPickMessages(self):
+        messageLen = len(self.Messages)
+        selectMessages = set()
+        while len(selectMessages) != 6:
+            randomIndex = random.randint(0, messageLen - 1)
+            selectedMessage = self.Messages[randomIndex]
+            selectMessages.add(selectedMessage)
+        self.Messages = list(selectMessages)
+
+    def SendMessages(self):
+        for message in self.Messages:
+            message.Send()
 
     def Vote(self):
         for contestant in self.Contestants:
-            self.ChooseRandom()
-            for message in self.Messages:
-                for kingdom in GlobalVariables.kingdoms:
-                    if kingdom == contestant:
-                        continue
-                    msgCounter = Counter(message.lower())
-                    filteredCounter = dict((counterKey, kingdom.Counter[counterKey]) for counterKey, counterValue in msgCounter.items()
-                                           if counterKey in kingdom.Counter and counterValue >= kingdom.Counter[counterKey])
-                    if filteredCounter == kingdom.Counter:
-                        if kingdom not in contestant.Allies:
-                            contestant.Support += 1
-                            contestant.Allies.add(kingdom)
-
+            messages = contestant.PrepareMessagesFor(self.Voters)
+            self.Messages.extend(messages)
+        self.HighPriestPickMessages()
+        self.SendMessages()
 
     def CountVotes(self):
         while True:
@@ -46,14 +67,16 @@ class Ballot:
             print('Results after round {} ballot count'.format(roundNumber))
             for contestant in contestants:
                 print('Allies for {} : {}'.format(contestant.Name, contestant.Support))
-            while(len(topKingdoms) > 1):
-                GlobalVariables.Round+=1
-                ballot = Ballot(topKingdoms)
-                ballot.Vote()
-                ballot.CountVotes()
-                break
+            self.DecideReVote(topKingdoms)
             break
         GlobalVariables.Winner = topKingdoms[0]
+
+    def DecideReVote(self,topKingdoms):
+        while (len(topKingdoms) > 1):
+            GlobalVariables.Round += 1
+            self.UpdateContestants(topKingdoms)
+            self.VotingProcess()
+            break
 
     def GetBallotResult(self):
         print('Who is the ruler of Southeros?')
